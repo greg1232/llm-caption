@@ -1,0 +1,13 @@
+name: llm_caption
+help: Caption videos using the llm model
+version: 0.1.0
+
+
+commands:
+
+- name: build-image
+  help: Build image from dockerfile
+
+- name: caption
+  help: Run image captioning on the specified model
+
