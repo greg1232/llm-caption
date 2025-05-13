@@ -1,5 +1,5 @@
 
-from llm_caption.caption.caption import caption_videos
+from llm_caption.caption.caption_videos import caption_videos
 from llm_caption.data.load_all_videos import load_all_videos
 
 import logging
@@ -18,6 +18,11 @@ def setup_logging():
         level=logging.DEBUG,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     )
+
+    logging.getLogger("openai").setLevel(logging.WARNING)
+    logging.getLogger("PIL").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
 
 
 main()

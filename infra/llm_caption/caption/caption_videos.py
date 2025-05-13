@@ -2,6 +2,10 @@ from openai import OpenAI
 
 import os
 import copy
+import json
+import base64
+from io import BytesIO
+
 
 from tqdm import tqdm
 
@@ -10,7 +14,7 @@ def caption_videos(images):
         if label_already_exists(image):
             continue
 
-        caption = generate_caption(image)
+        caption = caption_image(image)
 
         save_caption(image, caption)
 
@@ -57,7 +61,7 @@ def caption_image(image):
             "content": [
                 # NOTE: The prompt formatting with the image token `<image>` is not needed
                 # since the prompt will be processed automatically by the API server.
-                {"type": "text", "text": "What’s in this image?"},
+                {"type": "text", "text": "Describe what’s in this image in about a paragraph. Your descrption will be used to generate this image using a text-to-image model. Please be as descriptive as possible."},
                 {"type": "image_url", "image_url": {"url": image_url}},
             ],
         }],
